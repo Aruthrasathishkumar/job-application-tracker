@@ -13,7 +13,7 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-2.5 text-xs">
         <p className="text-slate-400 mb-1">{label}</p>
-        <p className="text-slate-800 font-medium">{score}/5 — {SCORE_LABELS[Math.round(score)] || 'Mixed'}</p>
+        <p className="text-slate-800 font-medium">{score}/5 - {SCORE_LABELS[Math.round(score)] || 'Mixed'}</p>
       </div>
     )
   }

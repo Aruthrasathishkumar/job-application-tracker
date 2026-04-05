@@ -26,7 +26,7 @@ function AddNoteModal({ jobs, onSave, onClose }) {
         </div>
         <div className="space-y-3.5">
           <div className="grid grid-cols-2 gap-3">
-            <div><label className="text-[11px] text-slate-500 mb-1 block font-medium">Job *</label><select value={form.job_id} onChange={e => set('job_id', e.target.value)} className={inp}>{jobs.map(j => <option key={j.id} value={j.id}>{j.company} — {j.role}</option>)}</select></div>
+            <div><label className="text-[11px] text-slate-500 mb-1 block font-medium">Job *</label><select value={form.job_id} onChange={e => set('job_id', e.target.value)} className={inp}>{jobs.map(j => <option key={j.id} value={j.id}>{j.company} - {j.role}</option>)}</select></div>
             <div><label className="text-[11px] text-slate-500 mb-1 block font-medium">Round</label><input value={form.round} onChange={e => set('round', e.target.value)} className={inp} placeholder="Phone, Technical, Onsite..." /></div>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -160,7 +160,7 @@ export default function Interviews({ jobs }) {
 
       {jobs.length === 0 && (
         <div className="bg-amber-50 border border-amber-100 rounded-xl p-3.5">
-          <p className="text-amber-600 text-sm">Add job applications first — then attach interview notes to them.</p>
+          <p className="text-amber-600 text-sm">Add job applications first - then attach interview notes to them.</p>
         </div>
       )}
 

@@ -25,7 +25,7 @@ function JobCard({ job, index, onDelete }) {
             <span className="text-[10px] text-slate-400 bg-slate-50 border border-slate-100 px-2 py-0.5 rounded-full font-medium">{job.source}</span>
             {job.salary_min && (
               <span className="text-[10px] text-emerald-600 font-semibold">
-                ${(job.salary_min / 1000).toFixed(0)}k{job.salary_max && `–${(job.salary_max / 1000).toFixed(0)}k`}
+                ${(job.salary_min / 1000).toFixed(0)}k{job.salary_max && `-${(job.salary_max / 1000).toFixed(0)}k`}
               </span>
             )}
           </div>

@@ -6,15 +6,12 @@ function Logo() {
     <div className="flex items-center gap-2">
       <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <rect x="1" y="1" width="4" height="4" rx="1" fill="white" opacity="0.95"/>
-          <rect x="6" y="1" width="4" height="4" rx="1" fill="white" opacity="0.6"/>
-          <rect x="11" y="1" width="4" height="4" rx="1" fill="white" opacity="0.3"/>
-          <rect x="1" y="6" width="4" height="4" rx="1" fill="white" opacity="0.7"/>
-          <rect x="6" y="6" width="4" height="4" rx="1" fill="white" opacity="0.4"/>
-          <rect x="1" y="11" width="4" height="4" rx="1" fill="white" opacity="0.45"/>
+          <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1.5" fill="none"/>
+          <circle cx="7" cy="7" r="2.5" stroke="white" strokeWidth="1" fill="none" opacity="0.5"/>
+          <line x1="10.8" y1="10.8" x2="14.5" y2="14.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
         </svg>
       </div>
-      <span className="text-[15px] font-bold text-slate-800 tracking-tight">Job Tracker</span>
+      <span className="text-[15px] font-bold text-slate-800 tracking-tight">Careerlens</span>
     </div>
   )
 }
@@ -255,7 +252,7 @@ export default function Landing({ onGetStarted, onLogin }) {
                 Your spreadsheet can&apos;t tell you<br className="hidden md:block" /> which source gets you interviews.
               </h2>
               <p className="text-indigo-200 max-w-lg mx-auto mb-8">
-                Job Tracker gives you real intelligence — source funnels, burnout patterns, interview history search, and salary negotiation data. All in one place.
+                Careerlens gives you real intelligence - source funnels, burnout patterns, interview history search, and salary negotiation data. All in one place.
               </p>
               <div className="flex flex-wrap justify-center gap-6">
                 {[
@@ -300,7 +297,7 @@ export default function Landing({ onGetStarted, onLogin }) {
         </div>
         <div className="border-t border-slate-50 py-4 px-6">
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
-            <span>&copy; 2026 Job Tracker</span>
+            <span>&copy; 2026 Careerlens</span>
             <span>Data stays on your machine</span>
             <span>Privacy</span>
           </div>

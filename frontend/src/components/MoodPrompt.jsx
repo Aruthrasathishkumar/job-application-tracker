@@ -33,7 +33,7 @@ export function MoodCheckIn({ onLog, loggedToday, todayScore }) {
   return (
     <div className="bg-gradient-to-r from-indigo-50/50 to-violet-50/50 border border-indigo-100/50 rounded-xl px-5 py-4">
       <p className="text-slate-700 text-sm font-semibold mb-0.5">How&apos;s the job search going today?</p>
-      <p className="text-slate-400 text-xs mb-3">Takes 2 seconds — helps track burnout risk</p>
+      <p className="text-slate-400 text-xs mb-3">Takes 2 seconds - helps track burnout risk</p>
       <div className="flex gap-2">
         {MOODS.map(m => (
           <button key={m.score} onClick={() => handleSelect(m.score)}

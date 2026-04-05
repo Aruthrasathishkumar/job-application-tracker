@@ -65,7 +65,7 @@ export default function Salary() {
     <div className="space-y-5">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Median target" value={fmt(summary.median_target)} sub="across applications" />
-        <StatCard label="Salary range" value={`${fmt(summary.min_target)} – ${fmt(summary.max_target)}`} sub="min to max" color="text-indigo-600" />
+        <StatCard label="Salary range" value={`${fmt(summary.min_target)} - ${fmt(summary.max_target)}`} sub="min to max" color="text-indigo-600" />
         <StatCard label="With salary data" value={summary.total_with_salary} sub="applications tracked" color="text-violet-600" />
         {offer_analysis ? (
           <StatCard label="Best offer" value={fmt(offer_analysis.best_offer)} sub={`${offer_analysis.percentile_of_best}th percentile`} color="text-emerald-600" />
@@ -81,7 +81,7 @@ export default function Salary() {
             <div>
               <p className="text-emerald-700 font-medium text-sm mb-0.5">You have {offer_analysis.count} offer{offer_analysis.count > 1 ? 's' : ''}!</p>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Best offer: {fmtFull(offer_analysis.best_offer)} — {offer_analysis.percentile_of_best}th percentile of your targets.
+                Best offer: {fmtFull(offer_analysis.best_offer)} - {offer_analysis.percentile_of_best}th percentile of your targets.
                 {offer_analysis.percentile_of_best < 50 ? ' Room to negotiate.' : ' Strong offer.'}
               </p>
             </div>
@@ -124,7 +124,7 @@ export default function Salary() {
                   <p className="text-slate-400 text-xs">{job.role}</p>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="text-slate-600 text-sm font-medium">{job.salary_min && job.salary_max ? `${fmt(job.salary_min)} – ${fmt(job.salary_max)}` : fmt(job.salary_min || job.salary_max)}</p>
+                  <p className="text-slate-600 text-sm font-medium">{job.salary_min && job.salary_max ? `${fmt(job.salary_min)} - ${fmt(job.salary_max)}` : fmt(job.salary_min || job.salary_max)}</p>
                   <p className="text-slate-400 text-[11px]">target</p>
                 </div>
               </div>
