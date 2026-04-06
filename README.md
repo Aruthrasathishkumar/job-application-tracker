@@ -68,9 +68,13 @@ npm run dev
 ```
 ## 📸 Screenshots
 ```
-<img src="./screenshots/Screenshot 2026-04-01 172217.png" width="800"/>
+<img src="./screenshots/Screenshot 2026-04-05 205607.png" width="800"/>
 
-<img src="./screenshots/Screenshot 2026-04-01 172257.png" width="800"/>
+<img src="./screenshots/Screenshot 2026-04-05 205801.png" width="800"/>
 
-<img src="./screenshots/Screenshot 2026-04-01 172334.png" width="800"/>
+<img src="./screenshots/Screenshot 2026-04-05 205814.png" width="800"/>
+
+<img src="./screenshots/Screenshot 2026-04-05 205814.png" width="800"/>
+
+<img src="./screenshots/Screenshot 2026-04-05 205814.png" width="800"/>
 
