@@ -114,3 +114,78 @@ def get_me(current_user: User = Depends(get_current_user)):
         user_id=current_user.id,
         email=current_user.email
     )
+
+import httpx
+import os
+from urllib.parse import urlencode
+
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+GOOGLE_REDIRECT_URI = os.getenv("GOOGLE_REDIRECT_URI")
+
+@router.get("/google")
+def google_login():
+    params = {
+        "client_id": GOOGLE_CLIENT_ID,
+        "redirect_uri": GOOGLE_REDIRECT_URI,
+        "response_type": "code",
+        "scope": "openid email profile",
+        "access_type": "offline",
+    }
+    url = "https://accounts.google.com/o/oauth2/v2/auth?" + urlencode(params)
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url)
+
+@router.get("/google/callback")
+async def google_callback(code: str, session: Session = Depends(get_session)):
+    # Exchange code for tokens
+    async with httpx.AsyncClient() as client:
+        token_res = await client.post(
+            "https://oauth2.googleapis.com/token",
+            data={
+                "code": code,
+                "client_id": GOOGLE_CLIENT_ID,
+                "client_secret": GOOGLE_CLIENT_SECRET,
+                "redirect_uri": GOOGLE_REDIRECT_URI,
+                "grant_type": "authorization_code",
+            }
+        )
+        token_data = token_res.json()
+        
+        # Get user info from Google
+        user_res = await client.get(
+            "https://www.googleapis.com/oauth2/v2/userinfo",
+            headers={"Authorization": f"Bearer {token_data['access_token']}"}
+        )
+        google_user = user_res.json()
+
+    email = google_user["email"]
+    google_id = google_user["id"]
+
+    # Find existing user or create new one
+    # Uses your EXISTING User model — zero schema changes needed
+    user = session.exec(
+        select(User).where(User.email == email)
+    ).first()
+
+    if user:
+        # Update google_id if logging in with Google for first time
+        if not user.google_id:
+            user.google_id = google_id
+            session.commit()
+            session.refresh(user)
+    else:
+        # Create new user via Google — no password needed
+        user = User(email=email, google_id=google_id)
+        session.add(user)
+        session.commit()
+        session.refresh(user)
+
+    # Return SAME JWT format your existing frontend already handles
+    token = create_token(user.id)
+    
+    # Redirect to frontend with token in URL
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(
+        f"http://localhost:5173/?token={token}&email={email}"
+    )

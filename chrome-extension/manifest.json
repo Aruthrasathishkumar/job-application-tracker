@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Careerlens - Quick Add",
+  "version": "1.0",
+  "description": "Add jobs from LinkedIn and Naukri directly to Careerlens",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://www.naukri.com/*",
+    "http://localhost:5173/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://localhost:5173/*"],
+      "js": ["tokenSync.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

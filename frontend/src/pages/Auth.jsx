@@ -64,7 +64,9 @@ export default function Auth({ onSuccess, onBack }) {
               ].map((f, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className={`w-6 h-6 rounded-lg bg-gradient-to-br ${f.color} flex items-center justify-center shadow-sm`}>
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5L9.5 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2.5 6l2.5 2.5L9.5 4" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
                   <span className="text-sm text-slate-600">{f.label}</span>
                 </div>
@@ -154,14 +156,44 @@ export default function Auth({ onSuccess, onBack }) {
               </div>
             )}
 
+            {/* Email/password submit button */}
             <button onClick={handleSubmit} disabled={loading || !email || !password}
               className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-xl text-sm transition-all duration-300 shadow-lg shadow-indigo-500/20">
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+                  <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+                  </svg>
                   {isLogin ? 'Signing in...' : 'Creating account...'}
                 </span>
               ) : isLogin ? 'Sign in' : 'Create account'}
+            </button>
+
+            {/* Divider */}
+            <div className="relative my-2">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-slate-200" />
+              </div>
+              <div className="relative flex justify-center">
+                <span className="px-3 bg-gradient-to-br from-slate-50 via-indigo-50/30 to-violet-50/20 text-slate-400 text-xs">
+                  or
+                </span>
+              </div>
+            </div>
+
+            {/* Google OAuth button */}
+            <button
+              onClick={() => window.location.href = 'http://127.0.0.1:8000/auth/google'}
+              className="w-full bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-slate-800 py-3 rounded-xl text-sm font-medium transition-all duration-200 flex items-center justify-center gap-3 shadow-sm"
+            >
+              <svg width="18" height="18" viewBox="0 0 48 48">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.36-8.16 2.36-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+              Continue with Google
             </button>
           </div>
 

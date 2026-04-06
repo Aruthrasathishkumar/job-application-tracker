@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 420px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #1e293b;
+    }
+
+    .header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-title { font-size: 15px; font-weight: 700; color: #1e293b; }
+    .header-sub { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+
+    .body { padding: 20px; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .field { margin-bottom: 14px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #64748b;
+      margin-bottom: 6px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #1e293b;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.15s;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #7c3aed; }
+    input::placeholder, textarea::placeholder { color: #cbd5e1; }
+    textarea { resize: none; }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .btn-cancel {
+      padding: 11px;
+      background: white;
+      color: #64748b;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-cancel:hover { border-color: #cbd5e1; color: #1e293b; }
+    .btn-add {
+      padding: 11px;
+      background: #7c3aed;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .btn-add:hover { background: #6d28d9; }
+    .btn-add:disabled { background: #c4b5fd; cursor: not-allowed; }
+
+    .status-msg {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      text-align: center;
+      display: none;
+    }
+    .success { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+    .error   { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+
+    .not-logged-in {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .not-logged-in p { color: #64748b; font-size: 13px; margin-bottom: 12px; }
+    .not-logged-in a {
+      color: #7c3aed;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <div class="header-title">Add application</div>
+      <div class="header-sub">Auto-filled from this page</div>
+    </div>
+  </div>
+
+  <div id="login-required" class="not-logged-in" style="display:none">
+    <p>You are not logged in to Job Tracker.</p>
+    <a href="http://localhost:5173" target="_blank">Open Job Tracker to login →</a>
+  </div>
+
+  <div id="form-section" class="body">
+
+    <div class="row">
+      <div>
+        <label>Company *</label>
+        <input id="company" type="text" placeholder="Google" />
+      </div>
+      <div>
+        <label>Role *</label>
+        <input id="role" type="text" placeholder="Software Engineer" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Status</label>
+        <select id="status">
+          <option value="applied">Applied</option>
+          <option value="screening">Screening</option>
+          <option value="interview">Interview</option>
+          <option value="offer">Offer</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+      <div>
+        <label>Source</label>
+        <select id="source">
+          <option value="linkedin">LinkedIn</option>
+          <option value="cold">Cold</option>
+          <option value="alumni">Alumni</option>
+          <option value="referral">Referral</option>
+          <option value="recruiter">Recruiter</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Salary Min ($)</label>
+        <input id="salary_min" type="number" placeholder="80000" />
+      </div>
+      <div>
+        <label>Salary Max ($)</label>
+        <input id="salary_max" type="number" placeholder="120000" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Offer Received ($)</label>
+      <input id="offer_received" type="number" placeholder="Leave blank until offer stage" />
+    </div>
+
+    <div class="field">
+      <label>Job URL</label>
+      <input id="jd_url" type="text" placeholder="https://..." />
+    </div>
+
+    <div class="field">
+      <label>Notes</label>
+      <textarea id="notes" rows="3" placeholder="Referral from John, strong team culture..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-cancel" onclick="window.close()">Cancel</button>
+      <button class="btn-add" id="add-btn" onclick="addJob()">Add Job</button>
+    </div>
+
+    <div id="status-msg" class="status-msg"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
