@@ -23,6 +23,10 @@ Careerlens solves the real problem behind job searching:
 - Improving strategy  
 - Making better decisions  
 
+## ⚙️ System Architecture
+
+<img src="./Screenshots/Screenshot 2026-04-05 205607.png" width="800"/>
+
 ## ⚡ Key Features
 
 - 📊 Kanban Board - Track applications visually  
