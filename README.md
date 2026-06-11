@@ -25,7 +25,7 @@ Careerlens solves the real problem behind job searching:
 
 ## ⚙️ System Architecture
 
-<img src="./Screenshots/CareerLens system architecture.png" width="800"/>
+<img src="./Screenshots/CareerLens system Architecture.png" width="800"/>
 
 ## ⚡ Key Features
 
