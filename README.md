@@ -3,7 +3,7 @@
 A full-stack platform that transforms job searching from **tracking** into **intelligence + strategy**.
 
 🔗 **Live Demo (Frontend Preview):**  
-https://aruthrasathishkumar.github.io/job-application-tracker/
+https://aruthrasathish.github.io/job-application-tracker/
 
 ## ⚠️ Important Disclaimer
 
